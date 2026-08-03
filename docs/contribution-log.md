@@ -2,6 +2,8 @@
 
 Group 39: Team_5ive9ine_2.0
 
+Confirmed group size: 17 members
+
 Official project title: SMART FOOD DELIVERY
 
 ## Team Roster
@@ -25,8 +27,6 @@ Official project title: SMART FOOD DELIVERY
 | 15 | 22413798 | Freeman Isaac Kweku | DCIT 204 |
 | 16 | 22402374 | Normanyo Leslie Dela | DCIT 204 |
 | 17 | 22408680 | Okoe Anthonia Holisede | DCIT 204 |
-
-Note: The provided list contains 17 named members after including Baaba. Confirm whether the official group size is 16 or whether one entry is extra before final submission.
 
 ## Contribution Entries
 

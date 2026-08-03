@@ -6,6 +6,8 @@ Official project title: SMART FOOD DELIVERY
 
 Group: Group 39, Team_5ive9ine_2.0
 
+Confirmed group size: 17 members
+
 ## Meeting Details
 
 Date: __________________________
@@ -105,7 +107,7 @@ Activities:
 - Confirm assigned data structure.
 - Confirm assigned algorithm or technical area.
 - Resolve display names from polls.
-- Confirm the official 16-member roster.
+- Confirm the official 17-member roster and map old poll display names to real names.
 
 Expected outcome:
 
@@ -184,7 +186,7 @@ Suggested tasks before the next progress meeting:
 | Task | Responsible Team / Member | Evidence Required | Deadline |
 | --- | --- | --- | --- |
 | Confirm GitHub access for all active members | Solomon | GitHub collaborator list | __________ |
-| Confirm final 16-member roster | Adom and Attendance/Minutes | Updated contribution log | __________ |
+| Confirm final 17-member roster and display-name mapping | Adom and Attendance/Minutes | Updated contribution log | __________ |
 | Review SQLite schema | Enam and Database Team | Comments or approved schema | __________ |
 | Prepare 50 locations | Dataset Team | `data/locations.csv` update | __________ |
 | Prepare first 100 roads | Dataset Team | `data/roads.csv` update | __________ |
@@ -256,7 +258,7 @@ Meeting 3 should not end until the group has:
 - Confirmed GitHub usernames and access status.
 - Reviewed the current project scaffold.
 - Confirmed or corrected team alignment.
-- Confirmed the official roster issue.
+- Confirmed the official roster and display-name mapping.
 - Received progress reports from all teams.
 - Confirmed SQLite collaboratively with the Database Team.
 - Assigned next milestone tasks with evidence and deadlines.
@@ -272,7 +274,7 @@ Meeting 3 should not end until the group has:
 | Repository visibility | Private |
 | Database | SQLite, pending Database Team review/confirmation |
 | Performance graphs | Python or Excel |
-| Official roster | To be confirmed |
+| Official roster | 17 members confirmed |
 | Next meeting date | __________________________ |
 
 ## Attendance

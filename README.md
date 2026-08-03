@@ -62,10 +62,20 @@ mvn test
 Run the console application:
 
 ```bash
-mvn exec:java -Dexec.mainClass=edu.ug.smartdelivery.Main
+mvn exec:java
 ```
 
-If the Maven Exec plugin is not configured on a machine, run from the generated JAR after packaging.
+The Maven Exec plugin is already configured in `pom.xml`. If you need to pass the main class manually in PowerShell, wrap the property in quotes:
+
+```powershell
+mvn exec:java "-Dexec.mainClass=edu.ug.smartdelivery.Main"
+```
+
+After packaging, the application can also be run from the generated JAR:
+
+```bash
+java -jar target/smart-food-delivery-optimizer-0.1.0-SNAPSHOT.jar
+```
 
 ## Database
 
@@ -81,7 +91,7 @@ The final dataset must include at least:
 
 ## Team
 
-Group 39: Team_5ive9ine_2.0
+Group 39: Team_5ive9ine_2.0, 17 members
 
 Technical Lead and Lead Java Developer: Dzah Solomon Sampson
 

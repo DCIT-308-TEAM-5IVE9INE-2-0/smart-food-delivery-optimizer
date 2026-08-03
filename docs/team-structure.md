@@ -4,6 +4,8 @@ Group 39: Team_5ive9ine_2.0
 
 Official project title: SMART FOOD DELIVERY
 
+Confirmed group size: 17 members
+
 This document aligns members with the working teams, leadership roles and oral-defence preparation areas from Meeting 2. It should be reviewed in Meeting 3 and corrected where display names or membership details need confirmation.
 
 ## Leadership Roles
@@ -153,8 +155,6 @@ Current members:
 
 ## Items To Confirm In Meeting 3
 
-- The roster currently contains 17 names in `docs/contribution-log.md`; confirm the official 16-member list.
-- Confirm whether `Asante Emmanuella Baaba` is an official member in this project group.
 - Confirm whether `24kt-Armani`, `nana` and any other display names from the polls map to the names listed in the official roster.
 - Confirm whether every member accepts the team and oral-defence topic listed above.
 - Add any missing support-team assignments so no member is left without a clear responsibility.
