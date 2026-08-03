@@ -1,0 +1,3 @@
+-- Seed data will be added by the Database and Dataset teams.
+-- The final database must include at least:
+-- 50 locations, 100 roads, 300 orders, 30 riders/resources and 30 algorithm runs.

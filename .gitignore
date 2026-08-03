@@ -1,0 +1,26 @@
+target/
+*.class
+*.log
+
+# Local database/runtime outputs
+database/*.db
+database/*.db-journal
+results/raw/*
+results/csv/*
+results/graphs/*
+results/screenshots/*
+!results/raw/.gitkeep
+!results/csv/.gitkeep
+!results/graphs/.gitkeep
+!results/screenshots/.gitkeep
+
+# IDE and OS files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Environment-specific settings
+.env
+application-local.properties

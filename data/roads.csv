@@ -1,0 +1,1 @@
+road_id,from_location_id,to_location_id,distance_km,travel_time_minutes,road_condition_weight,is_bidirectional
