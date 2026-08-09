@@ -3,7 +3,7 @@ package edu.ug.smartdelivery.algorithm.dynamicprogramming;
 import edu.ug.smartdelivery.datastructure.TraceStep;
 import edu.ug.smartdelivery.model.Order;
 
-public class DynamicOrderSelection {
+public final class DynamicOrderSelection {
     public OrderSelectionResult select(Order[] orders, int[] costs, int[] values, int capacity) {
         validateInputs(orders, costs, values, capacity);
         int[][] table = new int[orders.length + 1][capacity + 1];
@@ -25,12 +25,12 @@ public class DynamicOrderSelection {
             trace[traceCount++] = new TraceStep(traceCount, "process order " + orders[i - 1].orderId(), "bestValueAtCapacity=" + table[i][capacity]);
         }
 
-        Order[] selected = reconstruct(orders, costs, table, capacity);
-        int totalCost = totalCost(selected, orders, costs);
-        return new OrderSelectionResult(selected, table[orders.length][capacity], totalCost, table, trim(trace, traceCount));
+        ReconstructedSelection selection = reconstruct(orders, costs, table, capacity);
+        return new OrderSelectionResult(selection.selectedOrders(), table[orders.length][capacity], selection.totalCost(), table, trim(trace, traceCount));
     }
 
     public OrderSelectionResult selectByUrgencyWithinDistance(Order[] orders, int maxDistanceUnits) {
+        validateOrders(orders);
         int[] costs = new int[orders.length];
         int[] values = new int[orders.length];
         for (int i = 0; i < orders.length; i++) {
@@ -40,13 +40,15 @@ public class DynamicOrderSelection {
         return select(orders, costs, values, maxDistanceUnits);
     }
 
-    private Order[] reconstruct(Order[] orders, int[] costs, int[][] table, int capacity) {
+    private ReconstructedSelection reconstruct(Order[] orders, int[] costs, int[][] table, int capacity) {
         Order[] reversed = new Order[orders.length];
         int count = 0;
+        int totalCost = 0;
         int currentCapacity = capacity;
         for (int i = orders.length; i > 0; i--) {
             if (table[i][currentCapacity] != table[i - 1][currentCapacity]) {
                 reversed[count++] = orders[i - 1];
+                totalCost += costs[i - 1];
                 currentCapacity -= costs[i - 1];
             }
         }
@@ -54,20 +56,7 @@ public class DynamicOrderSelection {
         for (int i = 0; i < count; i++) {
             selected[i] = reversed[count - 1 - i];
         }
-        return selected;
-    }
-
-    private int totalCost(Order[] selected, Order[] orders, int[] costs) {
-        int total = 0;
-        for (Order selectedOrder : selected) {
-            for (int i = 0; i < orders.length; i++) {
-                if (orders[i].orderId() == selectedOrder.orderId()) {
-                    total += costs[i];
-                    break;
-                }
-            }
-        }
-        return total;
+        return new ReconstructedSelection(selected, totalCost);
     }
 
     private void validateInputs(Order[] orders, int[] costs, int[] values, int capacity) {
@@ -80,9 +69,21 @@ public class DynamicOrderSelection {
         if (capacity < 0) {
             throw new IllegalArgumentException("capacity cannot be negative");
         }
+        validateOrders(orders);
         for (int i = 0; i < orders.length; i++) {
             if (costs[i] <= 0 || values[i] < 0) {
                 throw new IllegalArgumentException("costs must be positive and values non-negative");
+            }
+        }
+    }
+
+    private void validateOrders(Order[] orders) {
+        if (orders == null) {
+            throw new IllegalArgumentException("orders are required");
+        }
+        for (Order order : orders) {
+            if (order == null) {
+                throw new IllegalArgumentException("orders cannot contain null values");
             }
         }
     }
@@ -93,5 +94,8 @@ public class DynamicOrderSelection {
             copy[i] = values[i];
         }
         return copy;
+    }
+
+    private record ReconstructedSelection(Order[] selectedOrders, int totalCost) {
     }
 }
