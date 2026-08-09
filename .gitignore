@@ -24,3 +24,6 @@ Thumbs.db
 # Environment-specific settings
 .env
 application-local.properties
+
+# Local technical-lead planning
+TODO.md
