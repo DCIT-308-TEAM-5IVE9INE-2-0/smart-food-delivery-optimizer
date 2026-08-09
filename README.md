@@ -81,6 +81,8 @@ java -jar target/smart-food-delivery-optimizer-0.1.0-SNAPSHOT.jar
 
 The database schema is stored in `database/schema.sql` and mirrored in `src/main/resources/database/schema.sql` for application loading. The initial implementation uses SQLite through JDBC.
 
+Detailed local database setup instructions are in `docs/database-setup.md`.
+
 The final dataset must include at least:
 
 - 50 locations
