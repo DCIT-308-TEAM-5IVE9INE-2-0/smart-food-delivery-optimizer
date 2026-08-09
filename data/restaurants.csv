@@ -1,1 +1,4 @@
 restaurant_id,name,location_id,opening_time,closing_time,status
+1,Bush Canteen Waakye,2,08:00,20:00,OPEN
+2,Legon Pizza Corner,2,10:00,22:00,OPEN
+3,Madina Jollof Hub,5,09:00,21:00,OPEN

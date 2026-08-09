@@ -31,4 +31,8 @@ public class CustomStack<T> {
     public int size() {
         return values.size();
     }
+
+    public String snapshot() {
+        return values.snapshot();
+    }
 }

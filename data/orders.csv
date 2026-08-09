@@ -1,1 +1,6 @@
 order_id,restaurant_id,customer_id,source_location_id,destination_location_id,category,urgency,time_submitted,deadline,status,estimated_distance,assigned_rider_id
+1,1,1,2,1,Lunch,2,2026-08-09T12:00,2026-08-09T12:45,PENDING,0.7,
+2,2,2,2,4,Pizza,4,2026-08-09T12:05,2026-08-09T12:40,PENDING,4.8,
+3,3,3,5,6,Jollof,5,2026-08-09T12:07,2026-08-09T12:30,PENDING,5.2,
+4,1,4,2,3,Lunch,1,2026-08-09T12:10,2026-08-09T13:00,PENDING,0.9,
+5,2,1,2,1,Snack,3,2026-08-09T12:12,2026-08-09T12:50,PENDING,0.7,

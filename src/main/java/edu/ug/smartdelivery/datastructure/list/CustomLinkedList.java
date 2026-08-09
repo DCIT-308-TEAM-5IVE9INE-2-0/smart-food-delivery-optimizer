@@ -3,6 +3,7 @@ package edu.ug.smartdelivery.datastructure.list;
 import edu.ug.smartdelivery.datastructure.iterator.CustomIterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class CustomLinkedList<T> {
     private Node<T> head;
@@ -100,6 +101,16 @@ public class CustomLinkedList<T> {
 
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    public String snapshot() {
+        StringJoiner joiner = new StringJoiner(" -> ");
+        Node<T> current = head;
+        while (current != null) {
+            joiner.add(String.valueOf(current.value));
+            current = current.next;
+        }
+        return joiner.toString();
     }
 
     private static final class Node<T> {

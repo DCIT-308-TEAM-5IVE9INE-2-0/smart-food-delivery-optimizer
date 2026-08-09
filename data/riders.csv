@@ -1,1 +1,4 @@
 rider_id,name,home_location_id,vehicle_type,capacity,availability_status,current_location_id
+1,Rider Alpha,1,Motorbike,2,AVAILABLE,1
+2,Rider Bravo,2,Motorbike,2,AVAILABLE,2
+3,Rider Charlie,5,Bicycle,1,AVAILABLE,5

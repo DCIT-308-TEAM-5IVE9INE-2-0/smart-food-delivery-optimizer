@@ -1,6 +1,7 @@
 package edu.ug.smartdelivery.datastructure.queue;
 
 import java.util.NoSuchElementException;
+import java.util.StringJoiner;
 
 public class CustomQueue<T> {
     private static final int DEFAULT_CAPACITY = 10;
@@ -51,6 +52,22 @@ public class CustomQueue<T> {
 
     public int size() {
         return size;
+    }
+
+    public int frontIndex() {
+        return front;
+    }
+
+    public int rearIndex() {
+        return rear;
+    }
+
+    public String snapshot() {
+        StringJoiner joiner = new StringJoiner(", ", "[", "]");
+        for (int i = 0; i < size; i++) {
+            joiner.add(String.valueOf(values[(front + i) % values.length]));
+        }
+        return "front=" + front + ", rear=" + rear + ", size=" + size + ", values=" + joiner;
     }
 
     private void ensureCapacity(int neededCapacity) {

@@ -1,6 +1,7 @@
 package edu.ug.smartdelivery.datastructure.array;
 
 import java.util.NoSuchElementException;
+import java.util.StringJoiner;
 
 public class CustomDynamicArray<T> {
     private static final int DEFAULT_CAPACITY = 10;
@@ -63,6 +64,22 @@ public class CustomDynamicArray<T> {
 
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    public Object[] toArray() {
+        Object[] copy = new Object[size];
+        for (int i = 0; i < size; i++) {
+            copy[i] = elements[i];
+        }
+        return copy;
+    }
+
+    public String snapshot() {
+        StringJoiner joiner = new StringJoiner(", ", "[", "]");
+        for (int i = 0; i < size; i++) {
+            joiner.add(String.valueOf(elements[i]));
+        }
+        return "size=" + size + ", capacity=" + elements.length + ", values=" + joiner;
     }
 
     private void ensureCapacity(int neededCapacity) {

@@ -1,1 +1,5 @@
 customer_id,name,phone,default_location_id
+1,Customer One,0200000001,1
+2,Customer Two,0200000002,4
+3,Customer Three,0200000003,6
+4,Customer Four,0200000004,3

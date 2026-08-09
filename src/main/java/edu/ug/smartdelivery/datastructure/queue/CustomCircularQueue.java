@@ -1,6 +1,7 @@
 package edu.ug.smartdelivery.datastructure.queue;
 
 import java.util.NoSuchElementException;
+import java.util.StringJoiner;
 
 public class CustomCircularQueue<T> {
     private final Object[] values;
@@ -49,6 +50,14 @@ public class CustomCircularQueue<T> {
 
     public int rearIndex() {
         return rear;
+    }
+
+    public String snapshot() {
+        StringJoiner joiner = new StringJoiner(", ", "[", "]");
+        for (int i = 0; i < size; i++) {
+            joiner.add(String.valueOf(values[(front + i) % values.length]));
+        }
+        return "front=" + front + ", rear=" + rear + ", size=" + size + ", values=" + joiner;
     }
 
     @SuppressWarnings("unchecked")
