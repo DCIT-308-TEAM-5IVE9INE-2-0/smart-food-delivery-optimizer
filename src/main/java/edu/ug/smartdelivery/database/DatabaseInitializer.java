@@ -19,6 +19,7 @@ public class DatabaseInitializer {
         String schema = readSchema();
         try (Connection connection = databaseConnection.open();
              Statement statement = connection.createStatement()) {
+            statement.execute("PRAGMA foreign_keys = ON");
             for (String sql : schema.split(";")) {
                 String trimmed = sql.trim();
                 if (!trimmed.isEmpty()) {
