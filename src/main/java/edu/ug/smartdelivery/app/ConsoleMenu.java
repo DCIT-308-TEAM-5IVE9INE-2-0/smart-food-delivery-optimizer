@@ -12,6 +12,7 @@ import edu.ug.smartdelivery.datastructure.graph.AdjacencyListGraph;
 import edu.ug.smartdelivery.database.CsvImportResult;
 import edu.ug.smartdelivery.database.DatabaseSummary;
 import edu.ug.smartdelivery.model.Customer;
+import edu.ug.smartdelivery.model.AlgorithmRun;
 import edu.ug.smartdelivery.model.Location;
 import edu.ug.smartdelivery.model.Order;
 import edu.ug.smartdelivery.model.PrioritizedOrder;
@@ -19,6 +20,7 @@ import edu.ug.smartdelivery.model.Restaurant;
 import edu.ug.smartdelivery.model.Rider;
 import edu.ug.smartdelivery.model.Road;
 import edu.ug.smartdelivery.service.DatabaseService;
+import edu.ug.smartdelivery.service.ExperimentService;
 import edu.ug.smartdelivery.service.OptimizationService;
 import edu.ug.smartdelivery.service.OrderComparators;
 import edu.ug.smartdelivery.service.RouteService;
@@ -34,6 +36,7 @@ public class ConsoleMenu {
     private final SortService sortService;
     private final RouteService routeService;
     private final OptimizationService optimizationService;
+    private final ExperimentService experimentService;
 
     public ConsoleMenu() {
         this.scanner = new Scanner(System.in);
@@ -42,6 +45,7 @@ public class ConsoleMenu {
         this.sortService = new SortService();
         this.routeService = new RouteService();
         this.optimizationService = new OptimizationService();
+        this.experimentService = new ExperimentService();
     }
 
     public void start() {
@@ -113,8 +117,8 @@ public class ConsoleMenu {
                 case 16 -> generateMinimumConnectionNetwork();
                 case 17 -> assignRidersGreedy();
                 case 18 -> selectOrdersDynamicProgramming();
-                case 19 -> System.out.println("Experiment runner belongs to Phase 9. Current algorithms are ready for experiments.");
-                case 20 -> viewDatabaseSummary();
+                case 19 -> runAlgorithmExperiments();
+                case 20 -> viewPerformanceResults();
                 case 21 -> System.out.println("Audit events table is ready. Stack-based undo demo is covered in structure traces.");
                 default -> System.out.println("Unknown option: " + choice);
             }
@@ -308,6 +312,23 @@ public class ConsoleMenu {
         printTrace(result.trace());
     }
 
+    private void runAlgorithmExperiments() throws Exception {
+        System.out.println("Running default performance lab. This may take a few seconds...");
+        AlgorithmRun[] runs = experimentService.runDefaultExperiments();
+        System.out.println("Experiment run complete.");
+        System.out.println("Rows saved to database: " + runs.length);
+        System.out.println("CSV exported to results/csv/algorithm_runs.csv");
+        printAlgorithmRuns(runs, Math.min(12, runs.length));
+    }
+
+    private void viewPerformanceResults() throws Exception {
+        AlgorithmRun[] runs = experimentService.getStoredRuns();
+        requireData(runs.length, "algorithm runs");
+        System.out.println("Stored performance results");
+        printAlgorithmRuns(runs, Math.min(20, runs.length));
+        System.out.println("Total stored runs: " + runs.length);
+    }
+
     private AdjacencyListGraph buildCurrentGraph() throws Exception {
         return routeService.buildGraph(requireLocations(), requireRoads());
     }
@@ -397,6 +418,17 @@ public class ConsoleMenu {
         int limit = Math.min(trace.length, 6);
         for (int i = 0; i < limit; i++) {
             System.out.println("Trace " + trace[i].stepNumber() + ": " + trace[i].action() + " | " + trace[i].state());
+        }
+    }
+
+    private void printAlgorithmRuns(AlgorithmRun[] runs, int limit) {
+        for (int i = 0; i < limit; i++) {
+            AlgorithmRun run = runs[i];
+            System.out.println(run.runId() + ". " + run.algorithmName()
+                    + " n=" + run.inputSize()
+                    + ", trial=" + run.trialNumber()
+                    + ", time=" + run.executionTimeNs() + "ns"
+                    + ", memory=" + String.format("%.2f", run.memoryKb()) + "KB");
         }
     }
 }
