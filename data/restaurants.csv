@@ -1,4 +1,15 @@
 restaurant_id,name,location_id,opening_time,closing_time,status
-1,Bush Canteen Waakye,2,08:00,20:00,OPEN
-2,Legon Pizza Corner,2,10:00,22:00,OPEN
-3,Madina Jollof Hub,5,09:00,21:00,OPEN
+1,Pinocchio - Fufu and Light Soup,72,07:00,21:00,CLOSED
+2,Mc Joy Restaurant - Banku and Tilapia,31,10:00,23:00,CLOSED
+3,Mensah Sarbah Dining Hall - Rice and Stew,25,10:00,23:00,OPEN
+4,Le Must Family Restaurant - Shawarma,41,10:00,23:00,OPEN
+5,Dough Man Foods Xcafe - Fried Rice,71,08:00,20:00,OPEN
+6,Breakfast To Breakfast - Shawarma,58,09:00,22:00,OPEN
+7,Maxi Catering Services - Kelewele,50,09:00,22:00,OPEN
+8,Living Room - Waakye,15,08:00,20:00,OPEN
+9,"Central Cafeteria, CC - Jollof Rice",51,10:00,23:00,OPEN
+10,NHYIRA FOODWAYS - Kelewele,22,10:00,23:00,OPEN
+11,4-4-2 Local Food Kitchen - Waakye,17,08:00,20:00,OPEN
+12,Commonwealth Dinning hall - Shawarma,60,08:00,20:00,OPEN
+13,Vida e Caffė - Banku and Tilapia,7,08:00,20:00,OPEN
+14,Waakye WuraGh (Westlands) - Shawarma,43,07:00,21:00,OPEN

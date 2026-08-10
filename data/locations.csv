@@ -1,7 +1,81 @@
 location_id,name,area,type,latitude,longitude
-1,Legon Hall,University of Ghana,Hostel,5.6506,-0.1870
-2,Bush Canteen,University of Ghana,Restaurant Area,5.6518,-0.1878
-3,JQB,University of Ghana,Lecture Hall,5.6540,-0.1862
-4,TF Hostel,Haatso,Hostel,5.6721,-0.2051
-5,Madina Market,Madina,Customer Zone,5.6698,-0.1641
-6,East Legon American House,East Legon,Customer Zone,5.6429,-0.1519
+1,Airport Junction,Legon Area,Transport Stop,5.6219506,-0.1794792
+2,First Atlantic,East Legon,Service,5.6452477,-0.1489632
+3,First Atlantic Bank,Legon Area,Service,5.6335946,-0.1728286
+4,Alexander Kwapong Hall,University of Ghana,Hostel,5.6368753,-0.1857340
+5,Dijas Collection,East Legon,Landmark,5.6596875,-0.1453531
+6,Jaria Hotel,East Legon,Landmark,5.6429203,-0.1557990
+7,Vida e Caffė,Legon Area,Restaurant,5.6345376,-0.1475970
+8,Department of Mathematics,University of Ghana,Academic,5.6538762,-0.1844130
+9,Pentagon Block C,University of Ghana,Hostel,5.6582999,-0.1809390
+10,Esidem Hospital,East Legon,Health,5.6601762,-0.1549791
+11,Communication,Legon Area,Transport Stop,5.6542123,-0.2086187
+12,East Legon 20,University of Ghana,Residential Area,5.6466655,-0.1846659
+13,Agape villa hostel,East Legon,Hostel,5.6491480,-0.1610535
+14,Legon First,University of Ghana,Transport Stop,5.6536077,-0.1807077
+15,Living Room,Legon Area,Restaurant,5.6344223,-0.1537452
+16,Assembly Hall,Legon Area,Landmark,5.6278995,-0.2135961
+17,4-4-2 Local Food Kitchen,Legon Area,Restaurant Area,5.6243275,-0.1884741
+18,Engmann House,Madina,Academic,5.6634954,-0.1730038
+19,Akro House,Madina,Academic,5.6632271,-0.1720744
+20,MCS International High,Legon Area,Academic,5.6321431,-0.1576054
+21,Emmanuel Eye Clinic,Legon Area,Health,5.6304406,-0.1744333
+22,NHYIRA FOODWAYS,Madina,Restaurant,5.6691423,-0.1494924
+23,Sarbah Main,University of Ghana,Residential Area,5.6454114,-0.1875467
+24,Westland Police Station,Legon Area,Landmark,5.6567997,-0.2079420
+25,Mensah Sarbah Dining Hall,University of Ghana,Restaurant,5.6453777,-0.1870763
+26,335 Place,Legon Area,Landmark,5.6208601,-0.1849839
+27,MTN,East Legon,Transport Stop,5.6452846,-0.1562346
+28,Night Market,University of Ghana,Market,5.6425034,-0.1862823
+29,El Tarsh Ventires,Haatso,Market,5.6740526,-0.1908336
+30,Maths Dept,University of Ghana,Landmark,5.6538571,-0.1838395
+31,Mc Joy Restaurant,East Legon,Restaurant,5.6395725,-0.1689287
+32,Standard Chartered Bank,Madina,Service,5.6715566,-0.1747293
+33,Hallmark International School,Haatso,Academic,5.6672005,-0.2055717
+34,Confusious Institute,University of Ghana,Landmark,5.6490400,-0.1897362
+35,Diddies Pub,East Legon,Landmark,5.6357668,-0.1665056
+36,N Block,University of Ghana,Landmark,5.6547165,-0.1870592
+37,Bubune Pharmacy,Legon Area,Health,5.6515134,-0.2092634
+38,Clinic,Legon Area,Transport Stop,5.6565812,-0.2078341
+39,Vice Chancellor's Residence,University of Ghana,Residential Area,5.6495919,-0.1970702
+40,EPP Books,University of Ghana,Landmark,5.6536299,-0.1789940
+41,Le Must Family Restaurant,Legon Area,Restaurant,5.6222443,-0.1735857
+42,Hairkits,East Legon,Landmark,5.6479053,-0.1508471
+43,Waakye WuraGh (Westlands),Haatso,Restaurant Area,5.6640068,-0.2045382
+44,Telefonica,Legon Area,Landmark,5.6226258,-0.1731406
+45,Health Shop Mini Mart,East Legon,Health,5.6383278,-0.1708890
+46,Queen's International School,East Legon,Academic,5.6375238,-0.1480143
+47,Akpabe Pharmacy Limited,Haatso,Health,5.6703643,-0.2054169
+48,I can do,Legon Area,Market,5.6737639,-0.1896310
+49,East Legon 21,University of Ghana,Residential Area,5.6448082,-0.1844832
+50,Maxi Catering Services,University of Ghana,Restaurant,5.6393227,-0.1825771
+51,"Central Cafeteria, CC",University of Ghana,Restaurant Area,5.6469687,-0.1870849
+52,The Balme Library,University of Ghana,Academic,5.6520209,-0.1870796
+53,The Gallery,Legon Area,Residential Area,5.6260773,-0.1715644
+54,Ernest Enterprise,Madina,Landmark,5.6672039,-0.1777367
+55,Erata Hotel,East Legon,Landmark,5.6395541,-0.1750319
+56,Brain Hill International School,Legon Area,Academic,5.6305075,-0.1587760
+57,Great Hall,University of Ghana,Landmark,5.6506336,-0.1962168
+58,Breakfast To Breakfast,Legon Area,Restaurant Area,5.6262807,-0.1535470
+59,La Fiesta Hacienda,East Legon,Market,5.6595163,-0.1658560
+60,Commonwealth Dinning hall,University of Ghana,Restaurant,5.6513099,-0.1925829
+61,Fire Stone,Madina,Transport Stop,5.6712951,-0.1751118
+62,Akuafo Hall Annex C,University of Ghana,Hostel,5.6474276,-0.1852158
+63,Vikings Hostel,University of Ghana,Hostel,5.6444108,-0.1856251
+64,Institute For Environment & Sanitation Studies,University of Ghana,Academic,5.6535146,-0.1819874
+65,Charlotte,East Legon,Landmark,5.6362890,-0.1542804
+66,Citydia,Legon Area,Market,5.6305546,-0.1730084
+67,Spintex Junction,Legon Area,Transport Stop,5.6212341,-0.1749921
+68,All Needs Supermarket,University of Ghana,Market,5.6428216,-0.1861225
+69,East Legon 11,University of Ghana,Residential Area,5.6478663,-0.1837175
+70,Kampala Courts,University of Ghana,Hostel,5.6565235,-0.1810342
+71,Dough Man Foods Xcafe,East Legon,Restaurant,5.6464313,-0.1550663
+72,Pinocchio,East Legon,Restaurant,5.6371601,-0.1499783
+73,Haatso Station,Haatso,Transport Stop,5.6675159,-0.2049663
+74,Block B,University of Ghana,Hostel,5.6462820,-0.1875393
+75,The Masters School,Haatso,Academic,5.6722218,-0.2010498
+76,Prestige Hostel,East Legon,Hostel,5.6596149,-0.1670739
+77,GCB Bank ATM,University of Ghana,Service,5.6510275,-0.1875888
+78,Africana Guest House,Legon Area,Landmark,5.6677633,-0.1809526
+79,Bungalow 3,East Legon,Landmark,5.6616990,-0.1731004
+80,GCB Bank,Legon Area,Service,5.6341075,-0.1720692
