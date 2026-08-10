@@ -3,6 +3,8 @@ package edu.ug.smartdelivery.database;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import edu.ug.smartdelivery.model.Location;
+import edu.ug.smartdelivery.model.Order;
+import edu.ug.smartdelivery.model.Rider;
 import edu.ug.smartdelivery.repository.LocationRepository;
 import edu.ug.smartdelivery.service.DatabaseService;
 import java.nio.file.Files;
@@ -36,6 +38,36 @@ class DatabaseServiceTest {
 
         List<Location> locations = new LocationRepository(connection).findAll();
         assertEquals("Legon Hall", locations.get(0).name());
+
+        service.markOrderDispatched(service.getPendingOrders()[0]);
+
+        assertEquals(0, service.getPendingOrders().length);
+        assertEquals("DISPATCHED", service.getOrders()[0].status());
+        assertEquals(1, service.getAuditEvents().length);
+    }
+
+    @Test
+    void assignsOrderToRiderAndRecordsAuditEvents() throws Exception {
+        Path databasePath = tempDir.resolve("smart_delivery_assignment_test.db");
+        Path dataDir = tempDir.resolve("assignment-data");
+        Files.createDirectories(dataDir);
+        writeSeedFiles(dataDir);
+
+        DatabaseConnection connection = new DatabaseConnection("jdbc:sqlite:" + databasePath);
+        DatabaseService service = new DatabaseService(connection);
+
+        service.initializeDatabase();
+        service.importCsvData(dataDir);
+        Order order = service.getPendingOrders()[0];
+        Rider rider = service.getRiders()[0];
+
+        service.assignOrderToRider(order, rider);
+
+        assertEquals("ASSIGNED", service.getOrders()[0].status());
+        assertEquals(rider.riderId(), service.getOrders()[0].assignedRiderId());
+        assertEquals("BUSY", service.getRiders()[0].availabilityStatus());
+        assertEquals(order.destinationLocationId(), service.getRiders()[0].currentLocationId());
+        assertEquals(2, service.getAuditEvents().length);
     }
 
     private void writeSeedFiles(Path dataDir) throws Exception {

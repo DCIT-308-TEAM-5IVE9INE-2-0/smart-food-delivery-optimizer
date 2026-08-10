@@ -79,6 +79,25 @@ public class OrderRepository {
         return orders;
     }
 
+    public void updateStatusAndAssignedRider(int orderId, String status, Integer assignedRiderId) throws SQLException {
+        String sql = """
+                UPDATE orders
+                SET status = ?, assigned_rider_id = ?
+                WHERE order_id = ?
+                """;
+        try (Connection connection = databaseConnection.open();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, status);
+            if (assignedRiderId == null) {
+                statement.setNull(2, Types.INTEGER);
+            } else {
+                statement.setInt(2, assignedRiderId);
+            }
+            statement.setInt(3, orderId);
+            statement.executeUpdate();
+        }
+    }
+
     public int count() throws SQLException {
         try (Connection connection = databaseConnection.open();
              PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) FROM orders");

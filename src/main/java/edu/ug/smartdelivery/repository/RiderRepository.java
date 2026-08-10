@@ -61,6 +61,21 @@ public class RiderRepository {
         return riders;
     }
 
+    public void updateStatusAndCurrentLocation(int riderId, String availabilityStatus, int currentLocationId) throws SQLException {
+        String sql = """
+                UPDATE riders
+                SET availability_status = ?, current_location_id = ?
+                WHERE rider_id = ?
+                """;
+        try (Connection connection = databaseConnection.open();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, availabilityStatus);
+            statement.setInt(2, currentLocationId);
+            statement.setInt(3, riderId);
+            statement.executeUpdate();
+        }
+    }
+
     public int count() throws SQLException {
         try (Connection connection = databaseConnection.open();
              PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) FROM riders");

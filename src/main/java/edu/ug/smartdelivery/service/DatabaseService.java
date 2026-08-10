@@ -7,6 +7,7 @@ import edu.ug.smartdelivery.database.DatabaseConnection;
 import edu.ug.smartdelivery.database.DatabaseInitializer;
 import edu.ug.smartdelivery.database.DatabaseSummary;
 import edu.ug.smartdelivery.model.Customer;
+import edu.ug.smartdelivery.model.AuditEvent;
 import edu.ug.smartdelivery.model.Location;
 import edu.ug.smartdelivery.model.Order;
 import edu.ug.smartdelivery.model.Restaurant;
@@ -23,6 +24,7 @@ import edu.ug.smartdelivery.repository.RoadRepository;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class DatabaseService {
@@ -112,5 +114,71 @@ public class DatabaseService {
     public Order[] getOrders() throws SQLException {
         List<Order> orders = orderRepository.findAll();
         return orders.toArray(Order[]::new);
+    }
+
+    public Order[] getPendingOrders() throws SQLException {
+        List<Order> orders = orderRepository.findAll();
+        return orders.stream()
+                .filter(order -> "PENDING".equalsIgnoreCase(order.status()))
+                .toArray(Order[]::new);
+    }
+
+    public AuditEvent[] getAuditEvents() throws SQLException {
+        List<AuditEvent> events = auditEventRepository.findAll();
+        return events.toArray(AuditEvent[]::new);
+    }
+
+    public void markOrderDispatched(Order order) throws SQLException {
+        updateOrderState(
+                order,
+                "DISPATCHED",
+                order.assignedRiderId(),
+                "ORDER_DISPATCHED",
+                "status=" + order.status() + ", assignedRiderId=" + order.assignedRiderId(),
+                "status=DISPATCHED, assignedRiderId=" + order.assignedRiderId()
+        );
+    }
+
+    public void assignOrderToRider(Order order, Rider rider) throws SQLException {
+        updateOrderState(
+                order,
+                "ASSIGNED",
+                rider.riderId(),
+                "ORDER_ASSIGNED",
+                "status=" + order.status() + ", assignedRiderId=" + order.assignedRiderId(),
+                "status=ASSIGNED, assignedRiderId=" + rider.riderId()
+        );
+        riderRepository.updateStatusAndCurrentLocation(rider.riderId(), "BUSY", order.destinationLocationId());
+        recordAuditEvent(
+                "RIDER_STATUS_UPDATED",
+                "riders",
+                rider.riderId(),
+                "status=" + rider.availabilityStatus() + ", currentLocationId=" + rider.currentLocationId(),
+                "status=BUSY, currentLocationId=" + order.destinationLocationId()
+        );
+    }
+
+    private void updateOrderState(
+            Order order,
+            String newStatus,
+            Integer assignedRiderId,
+            String eventType,
+            String previousValue,
+            String newValue
+    ) throws SQLException {
+        orderRepository.updateStatusAndAssignedRider(order.orderId(), newStatus, assignedRiderId);
+        recordAuditEvent(eventType, "orders", order.orderId(), previousValue, newValue);
+    }
+
+    private void recordAuditEvent(String eventType, String entityType, int entityId, String previousValue, String newValue) throws SQLException {
+        auditEventRepository.upsert(new AuditEvent(
+                auditEventRepository.nextEventId(),
+                eventType,
+                entityType,
+                entityId,
+                previousValue,
+                newValue,
+                LocalDateTime.now().toString()
+        ));
     }
 }
