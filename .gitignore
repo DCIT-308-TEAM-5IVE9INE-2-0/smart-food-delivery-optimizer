@@ -27,3 +27,7 @@ application-local.properties
 
 # Local technical-lead planning
 TODO.md
+
+# Claude Code local files (not shared with the team repo)
+CLAUDE.md
+.claude/
