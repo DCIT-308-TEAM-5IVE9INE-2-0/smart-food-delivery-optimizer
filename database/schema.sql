@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS orders (
     urgency INTEGER NOT NULL CHECK (urgency >= 0),
     time_submitted TEXT NOT NULL,
     deadline TEXT NOT NULL,
-    -- DELIVERED/CANCELLED are intentionally not yet allowed here; add them once
+    -- DELIVERED/CANCELLED are intentionally not yet allowed here. Add them once
     -- Meeting 5 agenda item 4.5 decides whether those transitions are needed.
     status TEXT NOT NULL CHECK (status IN ('PENDING', 'ASSIGNED', 'DISPATCHED')),
     estimated_distance REAL NOT NULL CHECK (estimated_distance >= 0),
