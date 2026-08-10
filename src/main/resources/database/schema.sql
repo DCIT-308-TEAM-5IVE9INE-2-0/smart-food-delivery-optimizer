@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS restaurants (
     location_id INTEGER NOT NULL,
     opening_time TEXT NOT NULL,
     closing_time TEXT NOT NULL,
-    status TEXT NOT NULL,
+    status TEXT NOT NULL CHECK (status IN ('OPEN', 'CLOSED')),
     FOREIGN KEY (location_id) REFERENCES locations(location_id)
 );
 
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS riders (
     home_location_id INTEGER NOT NULL,
     vehicle_type TEXT NOT NULL,
     capacity INTEGER NOT NULL CHECK (capacity > 0),
-    availability_status TEXT NOT NULL,
+    availability_status TEXT NOT NULL CHECK (availability_status IN ('AVAILABLE', 'BUSY')),
     current_location_id INTEGER NOT NULL,
     FOREIGN KEY (home_location_id) REFERENCES locations(location_id),
     FOREIGN KEY (current_location_id) REFERENCES locations(location_id)
@@ -61,7 +61,9 @@ CREATE TABLE IF NOT EXISTS orders (
     urgency INTEGER NOT NULL CHECK (urgency >= 0),
     time_submitted TEXT NOT NULL,
     deadline TEXT NOT NULL,
-    status TEXT NOT NULL,
+    -- DELIVERED/CANCELLED are intentionally not yet allowed here. Add them once
+    -- Meeting 5 agenda item 4.5 decides whether those transitions are needed.
+    status TEXT NOT NULL CHECK (status IN ('PENDING', 'ASSIGNED', 'DISPATCHED')),
     estimated_distance REAL NOT NULL CHECK (estimated_distance >= 0),
     assigned_rider_id INTEGER,
     FOREIGN KEY (restaurant_id) REFERENCES restaurants(restaurant_id),
