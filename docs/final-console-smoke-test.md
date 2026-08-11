@@ -9,7 +9,7 @@ Purpose: prove the console app can be demonstrated smoothly and that important a
 From the project root:
 
 ```bash
-mvn clean test
+Imvn clean test
 mvn exec:java
 ```
 
@@ -23,21 +23,21 @@ BUILD SUCCESS
 
 Run these menu actions in order.
 
-| Step | Menu Action | Expected Evidence |
-| ---: | --- | --- |
-| 1 | `Data Setup -> Initialize Database` | Database schema is created in `database/smart_delivery.db`. |
-| 2 | `Data Setup -> Import Default CSV Seed Data` | CSV rows are imported without foreign-key errors. |
-| 3 | `Data Setup -> View Database Summary` | Counts for locations, roads, riders, orders and algorithm runs are displayed. |
-| 4 | `Data Setup -> Show Dataset Requirement Status` | Requirement counts are shown for the final report. |
-| 5 | `Student-ID Parameters` | All 17 member IDs and derived parameters are displayed. |
-| 6 | `Browse Delivery Data -> Orders` | Orders are listed from the database. |
-| 7 | `Order Dispatch -> Process Orders Using Priority` | Selected orders can be marked `DISPATCHED`; audit events are recorded. |
-| 8 | `Optimization -> Greedy Rider Assignment` | Selected orders can be assigned to riders; orders become `ASSIGNED` and riders become `BUSY`. |
-| 9 | `Routes And Graphs -> Dijkstra Shortest Route` | A route, cost and trace table are displayed. |
-| 10 | `Optimization -> Dynamic Programming Order Selection` | Student-ID capacity is offered and DP trace is displayed. |
-| 11 | `Audit And Undo` | Recent dispatch/assignment audit events are visible. |
-| 12 | `Performance Lab -> Run Quick Demo Experiments` | Raw and averaged CSVs are exported under `results/csv`. |
-| 13 | `Performance Lab -> Show Graph Commands` | Quick and final report graph commands are displayed. |
+| Step | Menu Action                                           | Expected Evidence                                                                             |
+| ---: | ----------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+|    1 | `Data Setup -> Initialize Database`                   | Database schema is created in `database/smart_delivery.db`.                                   |
+|    2 | `Data Setup -> Import Default CSV Seed Data`          | CSV rows are imported without foreign-key errors.                                             |
+|    3 | `Data Setup -> View Database Summary`                 | Counts for locations, roads, riders, orders and algorithm runs are displayed.                 |
+|    4 | `Data Setup -> Show Dataset Requirement Status`       | Requirement counts are shown for the final report.                                            |
+|    5 | `Student-ID Parameters`                               | All 17 member IDs and derived parameters are displayed.                                       |
+|    6 | `Browse Delivery Data -> Orders`                      | Orders are listed from the database.                                                          |
+|    7 | `Order Dispatch -> Process Orders Using Priority`     | Selected orders can be marked `DISPATCHED`; audit events are recorded.                        |
+|    8 | `Optimization -> Greedy Rider Assignment`             | Selected orders can be assigned to riders; orders become `ASSIGNED` and riders become `BUSY`. |
+|    9 | `Routes And Graphs -> Dijkstra Shortest Route`        | A route, cost and trace table are displayed.                                                  |
+|   10 | `Optimization -> Dynamic Programming Order Selection` | Student-ID capacity is offered and DP trace is displayed.                                     |
+|   11 | `Audit And Undo`                                      | Recent dispatch/assignment audit events are visible.                                          |
+|   12 | `Performance Lab -> Run Quick Demo Experiments`       | Raw and averaged CSVs are exported under `results/csv`.                                       |
+|   13 | `Performance Lab -> Show Graph Commands`              | Quick and final report graph commands are displayed.                                          |
 
 ## Final Report Performance Evidence
 
