@@ -156,9 +156,51 @@ The built-in `Guided Demo` menu can also run the setup steps quickly, but the se
 
 Group 39: Team_5ive9ine_2.0, 17 members
 
-Technical Lead and Lead Java Developer: Dzah Solomon Sampson
+### Leadership
 
-The full team roster and contribution tracking are maintained in `docs/contribution-log.md`.
+| Role                                   | Member                               |
+| -------------------------------------- | ------------------------------------ |
+| Group Leader                           | Adom Bempong Franklin                |
+| Technical Lead and Lead Java Developer | Dzah Solomon Sampson                 |
+| Database and Dataset Lead              | Kodjoh-Kpakpassou Enam Antoine-Marie |
+| Testing and Quality Assurance Lead     | Akplu Kelvin Mawuli                  |
+| Documentation Lead                     | Normanyo Leslie Dela                 |
+| Media and Presentation Lead            | Amaniampong Samuel Kwarteng          |
+| Attendance and Minutes Officer         | Okoe Anthonia Holisede               |
+
+### Working Teams
+
+| Team   | Focus                                 | Members                                                                                                                                                                 |
+| ------ | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Team A | Technical Development and Integration | Dzah Solomon Sampson, Mubarack Jibriel, Tieku Henry Ebo, Otchere Ernest Atta, Osafo Kimathi Christian                                                                   |
+| Team B | Database and Dataset                  | Kodjoh-Kpakpassou Enam Antoine-Marie, Normanyo Leslie Dela, Asante Emmanuella Baaba, Nyame Ebenezer, Okoe Anthonia Holisede, Amaniampong Samuel Kwarteng, Obeng Richard |
+| Team C | Testing, Correctness and Performance  | Akplu Kelvin Mawuli, Ofori Richard, Adzraku Prosper Awoenam, Freeman Isaac Kweku, Amaniampong Samuel Kwarteng                                                           |
+| Team D | Research, Documentation and Report    | Normanyo Leslie Dela, Asante Emmanuella Baaba, Ofori Richard, Akplu Kelvin Mawuli, Adzraku Prosper Awoenam                                                              |
+| Team E | Presentation, Oral Defence and Media  | Amaniampong Samuel Kwarteng, Adzraku Prosper Awoenam, Okoe Anthonia Holisede, Adom Bempong Franklin                                                                     |
+
+### Full Roster
+
+|   # | Student ID | Member                               | Primary Area                                    |
+| --: | ---------- | ------------------------------------ | ----------------------------------------------- |
+|   1 | 22020618   | Adom Bempong Franklin                | Group leadership                                |
+|   2 | 22012447   | Dzah Solomon Sampson                 | Technical development and integration           |
+|   3 | 22166686   | Asante Emmanuella Baaba              | Dataset and documentation                       |
+|   4 | 22146249   | Mubarack Jibriel                     | Technical development support                   |
+|   5 | 22106332   | Ofori Richard                        | Testing and report support                      |
+|   6 | 22042260   | Akplu Kelvin Mawuli                  | Testing and quality assurance                   |
+|   7 | 22042713   | Adzraku Prosper Awoenam              | Testing, documentation and presentation support |
+|   8 | 22370501   | Obeng Richard                        | Dataset support                                 |
+|   9 | 22411093   | Tieku Henry Ebo                      | Dynamic programming support                     |
+|  10 | 22399487   | Amaniampong Samuel Kwarteng          | Media, presentation and performance support     |
+|  11 | 22262272   | Kodjoh-Kpakpassou Enam Antoine-Marie | Database and dataset                            |
+|  12 | 22306912   | Otchere Ernest Atta                  | Graph traversal support                         |
+|  13 | 22308781   | Osafo Kimathi Christian              | Graph algorithm support                         |
+|  14 | 22382964   | Nyame Ebenezer                       | Dataset support                                 |
+|  15 | 22413798   | Freeman Isaac Kweku                  | Testing and edge cases                          |
+|  16 | 22402374   | Normanyo Leslie Dela                 | Documentation and report                        |
+|  17 | 22408680   | Okoe Anthonia Holisede               | Minutes, dataset support and presentation       |
+
+Detailed contribution tracking is maintained in `docs/contribution-log.md`.
 
 ## Academic Integrity
 
