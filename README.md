@@ -91,6 +91,67 @@ The final dataset must include at least:
 - 30 riders/resources
 - 30 algorithm-run records
 
+## Final Demo Path
+
+Use this path for the live demo, screen recording or examiner walkthrough.
+
+Start the console app:
+
+```bash
+mvn exec:java
+```
+
+Recommended sequence:
+
+1. `Data Setup -> Initialize Database`
+2. `Data Setup -> Import Default CSV Seed Data`
+3. `Data Setup -> View Database Summary`
+4. `Data Setup -> Show Dataset Requirement Status`
+5. `Student-ID Parameters`
+6. `Browse Delivery Data -> Locations`
+7. `Browse Delivery Data -> Riders`
+8. `Browse Delivery Data -> Orders`
+9. `Order Dispatch -> Process Orders Using FIFO`
+10. `Order Dispatch -> Process Orders Using Priority`
+11. `Search And Sort -> Search Order By ID`
+12. `Search And Sort -> Sort Orders`
+13. `Routes And Graphs -> Dijkstra Shortest Route`
+14. `Routes And Graphs -> Prim Minimum Connection Network`
+15. `Optimization -> Greedy Rider Assignment`
+16. `Optimization -> Dynamic Programming Order Selection`
+17. `Audit And Undo`
+18. `Performance Lab -> Run Quick Demo Experiments`
+19. `Performance Lab -> View Stored Results`
+20. `Performance Lab -> Show Graph Commands`
+
+For final report evidence, also run:
+
+```text
+Performance Lab -> Run Final Report Experiments
+```
+
+This creates report-scale CSV files:
+
+```text
+results/csv/algorithm_runs_report.csv
+results/csv/algorithm_run_averages_report.csv
+```
+
+Generate final report graphs with:
+
+```bash
+python scripts/plot-results/plot_algorithm_runs.py --input results/csv/algorithm_runs_report.csv --output-dir results/graphs-report
+```
+
+The most important database-backed evidence to show during the demo:
+
+- Dispatch changes order statuses from `PENDING` to `DISPATCHED`.
+- Rider assignment changes orders to `ASSIGNED` and riders to `BUSY`.
+- Audit events are recorded after dispatch and assignment actions.
+- Performance runs are saved in the `algorithm_runs` table and exported as CSV.
+
+The built-in `Guided Demo` menu can also run the setup steps quickly, but the sequence above gives more control for explaining each requirement.
+
 ## Team
 
 Group 39: Team_5ive9ine_2.0, 17 members
