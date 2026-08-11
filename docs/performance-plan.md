@@ -2,19 +2,49 @@
 
 Performance results will be exported as CSV and plotted using Python or Excel.
 
-The console application can run the default performance lab from option 19. The
-run records are saved in the SQLite `algorithm_runs` table and exported to:
+The console application has two performance modes:
+
+- Quick demo mode: `Performance Lab -> Run Quick Demo Experiments`
+- Final report mode: `Performance Lab -> Run Final Report Experiments`
+
+Both modes save raw trial records in the SQLite `algorithm_runs` table.
+
+Quick demo raw results are exported to:
 
 ```text
 results/csv/algorithm_runs.csv
 ```
 
-Console option 20 displays the stored performance results.
+Quick demo averages are exported to:
+
+```text
+results/csv/algorithm_run_averages.csv
+```
+
+Final report raw results are exported to:
+
+```text
+results/csv/algorithm_runs_report.csv
+```
+
+Final report averages are exported to:
+
+```text
+results/csv/algorithm_run_averages_report.csv
+```
+
+Stored results can be viewed from `Performance Lab -> View Stored Results`.
 
 SVG graphs can be generated with:
 
 ```bash
 python scripts/plot-results/plot_algorithm_runs.py
+```
+
+Final report SVG graphs can be generated with:
+
+```bash
+python scripts/plot-results/plot_algorithm_runs.py --input results/csv/algorithm_runs_report.csv --output-dir results/graphs-report
 ```
 
 ## Required Experiments
@@ -28,7 +58,7 @@ python scripts/plot-results/plot_algorithm_runs.py
 
 Each experiment should run at least three times for each input size, and the report should use average runtime.
 
-Default implemented input sizes:
+Quick demo input sizes:
 
 ```text
 50, 100, 200
@@ -41,7 +71,24 @@ Default trials per input size:
 ```
 
 The default sizes are intentionally small enough for a live console demo. Larger
-sizes may be used later for final report graphs after confirming machine time.
+sizes are available in final report mode.
+
+Final report input sizes:
+
+| Experiment group | Input sizes |
+| --- | --- |
+| Search | 100, 500, 1000, 5000, 10000 |
+| Sorting | 100, 500, 1000, 5000, 10000 |
+| Hash table | 100, 500, 1000, 5000, 10000, 20000 |
+| Heap | 100, 500, 1000, 5000, 10000, 20000 |
+| Tree | 100, 500, 1000, 5000, 10000 |
+| Graph | 50, 100, 200, 500 |
+
+Expected final report raw rows:
+
+```text
+282
+```
 
 ## CSV Columns
 
@@ -63,6 +110,12 @@ Generated graph files:
 - `results/graphs/heap.svg`
 - `results/graphs/tree.svg`
 - `results/graphs/graph.svg`
+
+Final report graph files use the same names inside:
+
+```text
+results/graphs-report
+```
 
 ## Machine Specification
 

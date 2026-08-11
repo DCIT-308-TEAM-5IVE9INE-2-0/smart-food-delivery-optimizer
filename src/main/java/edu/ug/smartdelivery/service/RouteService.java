@@ -15,13 +15,27 @@ import edu.ug.smartdelivery.model.Location;
 import edu.ug.smartdelivery.model.Road;
 
 public class RouteService {
+    private final StudentIdParameterService studentIdParameterService;
+
+    public RouteService() {
+        this(new StudentIdParameterService());
+    }
+
+    public RouteService(StudentIdParameterService studentIdParameterService) {
+        if (studentIdParameterService == null) {
+            throw new IllegalArgumentException("studentIdParameterService cannot be null");
+        }
+        this.studentIdParameterService = studentIdParameterService;
+    }
+
     public AdjacencyListGraph buildGraph(Location[] locations, Road[] roads) {
         AdjacencyListGraph graph = new AdjacencyListGraph();
+        StudentIdParameters parameters = studentIdParameterService.calculateParameters();
         for (Location location : locations) {
             graph.addVertex(new GraphVertex(location.locationId(), location.name()));
         }
         for (Road road : roads) {
-            double weightedTravelCost = road.travelTimeMinutes() * road.roadConditionWeight();
+            double weightedTravelCost = studentIdParameterService.routeCost(road, parameters);
             graph.addEdge(road.fromLocationId(), road.toLocationId(), weightedTravelCost, road.bidirectional());
         }
         return graph;

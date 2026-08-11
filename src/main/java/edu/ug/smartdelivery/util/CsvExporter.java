@@ -1,6 +1,7 @@
 package edu.ug.smartdelivery.util;
 
 import edu.ug.smartdelivery.model.AlgorithmRun;
+import edu.ug.smartdelivery.model.AlgorithmRunAverage;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -26,6 +27,28 @@ public class CsvExporter {
                 writer.write(run.memoryKb() + ",");
                 writer.write(run.trialNumber() + ",");
                 writer.write(escape(run.dateRun()));
+                writer.newLine();
+            }
+        }
+    }
+
+    public void exportAlgorithmRunAverages(Path outputFile, AlgorithmRunAverage[] averages) throws IOException {
+        if (outputFile == null || averages == null) {
+            throw new IllegalArgumentException("outputFile and averages are required");
+        }
+        Path parent = outputFile.getParent();
+        if (parent != null) {
+            Files.createDirectories(parent);
+        }
+        try (BufferedWriter writer = Files.newBufferedWriter(outputFile)) {
+            writer.write("algorithm_name,input_size,average_execution_time_ns,average_memory_kb,trial_count");
+            writer.newLine();
+            for (AlgorithmRunAverage average : averages) {
+                writer.write(escape(average.algorithmName()) + ",");
+                writer.write(average.inputSize() + ",");
+                writer.write(average.averageExecutionTimeNs() + ",");
+                writer.write(average.averageMemoryKb() + ",");
+                writer.write(average.trialCount() + "");
                 writer.newLine();
             }
         }

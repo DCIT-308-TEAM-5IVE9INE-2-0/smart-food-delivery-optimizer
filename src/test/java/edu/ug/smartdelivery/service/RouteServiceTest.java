@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class RouteServiceTest {
     @Test
-    void buildsGraphFromLocationsAndRoadsUsingWeightedTravelCost() {
+    void buildsGraphFromLocationsAndRoadsUsingStudentIdRoutePenalty() {
         Location[] locations = {
                 new Location(1, "Legon Hall", "UG", "Hostel", 0, 0),
                 new Location(2, "Bush Canteen", "UG", "Restaurant", 0, 0)
@@ -21,6 +21,6 @@ class RouteServiceTest {
 
         assertEquals(2, graph.vertexCount());
         assertEquals(2, graph.edgeCount());
-        assertEquals(6.0, graph.neighborsOf(1)[0].weight());
+        assertEquals(8.0, graph.neighborsOf(1)[0].weight());
     }
 }

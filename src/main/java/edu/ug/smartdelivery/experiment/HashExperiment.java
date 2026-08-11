@@ -7,6 +7,22 @@ import edu.ug.smartdelivery.util.Timer;
 public class HashExperiment {
     private final Timer timer = new Timer();
     private final MemoryTracker memoryTracker = new MemoryTracker();
+    private final int initialCapacity;
+
+    public HashExperiment() {
+        this(16);
+    }
+
+    public HashExperiment(int initialCapacity) {
+        if (initialCapacity <= 0) {
+            throw new IllegalArgumentException("initialCapacity must be positive");
+        }
+        this.initialCapacity = initialCapacity;
+    }
+
+    public int initialCapacity() {
+        return initialCapacity;
+    }
 
     public ExperimentMeasurement[] run(int[] inputSizes, int trials) {
         ExperimentMeasurement[] results = new ExperimentMeasurement[inputSizes.length * trials * 2];
@@ -14,7 +30,7 @@ public class HashExperiment {
         for (int inputSize : inputSizes) {
             for (int trial = 1; trial <= trials; trial++) {
                 results[position++] = measure("Hash Table Insert", inputSize, trial, () -> {
-                    CustomHashTable<Integer, Integer> table = new CustomHashTable<>();
+                    CustomHashTable<Integer, Integer> table = new CustomHashTable<>(initialCapacity);
                     for (int i = 0; i < inputSize; i++) {
                         table.put(i, i * 10);
                     }
@@ -31,7 +47,7 @@ public class HashExperiment {
     }
 
     private CustomHashTable<Integer, Integer> filledTable(int inputSize) {
-        CustomHashTable<Integer, Integer> table = new CustomHashTable<>();
+        CustomHashTable<Integer, Integer> table = new CustomHashTable<>(initialCapacity);
         for (int i = 0; i < inputSize; i++) {
             table.put(i, i * 10);
         }

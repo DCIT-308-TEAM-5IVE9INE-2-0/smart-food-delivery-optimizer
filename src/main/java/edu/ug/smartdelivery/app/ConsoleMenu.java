@@ -27,6 +27,8 @@ import edu.ug.smartdelivery.service.OrderComparators;
 import edu.ug.smartdelivery.service.RouteService;
 import edu.ug.smartdelivery.service.SearchService;
 import edu.ug.smartdelivery.service.SortService;
+import edu.ug.smartdelivery.service.StudentIdParameterService;
+import edu.ug.smartdelivery.service.StudentIdParameters;
 import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.Optional;
@@ -42,6 +44,7 @@ public class ConsoleMenu {
     private final RouteService routeService;
     private final OptimizationService optimizationService;
     private final ExperimentService experimentService;
+    private final StudentIdParameterService studentIdParameterService;
 
     public ConsoleMenu() {
         this.scanner = new Scanner(System.in);
@@ -51,6 +54,7 @@ public class ConsoleMenu {
         this.routeService = new RouteService();
         this.optimizationService = new OptimizationService();
         this.experimentService = new ExperimentService();
+        this.studentIdParameterService = new StudentIdParameterService();
     }
 
     public void start() {
@@ -65,10 +69,11 @@ public class ConsoleMenu {
             System.out.println("6. Optimization");
             System.out.println("7. Performance Lab");
             System.out.println("8. Audit And Undo");
-            System.out.println("9. Guided Demo");
+            System.out.println("9. Student-ID Parameters");
+            System.out.println("10. Guided Demo");
             System.out.println("0. Exit");
 
-            int choice = readInt("Select option", 0, 9);
+            int choice = readInt("Select option", 0, 10);
             try {
                 switch (choice) {
                     case 0 -> {
@@ -83,7 +88,8 @@ public class ConsoleMenu {
                     case 6 -> optimizationMenu();
                     case 7 -> performanceLabMenu();
                     case 8 -> auditAndUndoMenu();
-                    case 9 -> guidedDemoMenu();
+                    case 9 -> showStudentIdParameters();
+                    case 10 -> guidedDemoMenu();
                     default -> System.out.println("Unknown option: " + choice);
                 }
             } catch (Exception exception) {
@@ -227,16 +233,18 @@ public class ConsoleMenu {
         boolean back = false;
         while (!back) {
             printHeader("Performance Lab");
-            System.out.println("1. Run Default Experiments");
-            System.out.println("2. View Stored Results");
-            System.out.println("3. Show Graph Command");
+            System.out.println("1. Run Quick Demo Experiments");
+            System.out.println("2. Run Final Report Experiments");
+            System.out.println("3. View Stored Results");
+            System.out.println("4. Show Graph Commands");
             System.out.println("0. Back");
-            int choice = readInt("Select option", 0, 3);
+            int choice = readInt("Select option", 0, 4);
             switch (choice) {
                 case 0 -> back = true;
                 case 1 -> runAlgorithmExperiments();
-                case 2 -> viewPerformanceResults();
-                case 3 -> showGraphCommand();
+                case 2 -> runReportAlgorithmExperiments();
+                case 3 -> viewPerformanceResults();
+                case 4 -> showGraphCommand();
                 default -> System.out.println("Unknown option: " + choice);
             }
             pauseIfContinuing(choice);
@@ -261,6 +269,25 @@ public class ConsoleMenu {
                     + " @ " + event.eventTime());
         }
         printLimitedNotice(events.length);
+        pause();
+    }
+
+    private void showStudentIdParameters() {
+        printHeader("Student-ID Parameters");
+        StudentIdParameters parameters = studentIdParameterService.calculateParameters();
+        System.out.println("Member IDs used: " + join(parameters.studentIds(), ", "));
+        System.out.println("Digit sum: " + parameters.digitSum());
+        System.out.println("Last-two-digit sum: " + parameters.lastTwoDigitSum());
+        System.out.println("Full ID sum: " + parameters.fullIdSum());
+        System.out.println("Final-digit sum: " + parameters.finalDigitSum());
+        System.out.println();
+        System.out.println("Priority weight: " + parameters.priorityWeight());
+        System.out.println("Route penalty: " + parameters.routePenalty());
+        System.out.println("Hash table initial size: " + parameters.hashTableInitialSize());
+        System.out.println("Random data seed: " + parameters.randomDataSeed());
+        System.out.println("Dynamic programming capacity: " + parameters.dynamicProgrammingCapacity());
+        System.out.println();
+        System.out.println(studentIdParameterService.formulaSummary(parameters));
         pause();
     }
 
@@ -420,9 +447,11 @@ public class ConsoleMenu {
 
     private void processOrdersByPriority() throws Exception {
         Order[] selectedOrders = chooseOrderPrefix();
+        StudentIdParameters parameters = studentIdParameterService.calculateParameters();
+        System.out.println("Using Student-ID priority weight: " + parameters.priorityWeight());
         CustomPriorityQueue<PrioritizedOrder> queue = new CustomPriorityQueue<>();
         for (Order order : selectedOrders) {
-            queue.insert(new PrioritizedOrder(order, order.urgency()));
+            queue.insert(new PrioritizedOrder(order, studentIdParameterService.priorityDispatchScore(order.urgency(), parameters)));
         }
         System.out.println("Priority queue before processing: " + queue.snapshot());
         if (!readYesNo("Mark these orders as DISPATCHED in the database?")) {
@@ -433,7 +462,8 @@ public class ConsoleMenu {
             PrioritizedOrder prioritizedOrder = queue.extractMin();
             databaseService.markOrderDispatched(prioritizedOrder.order());
             System.out.println("Process order " + prioritizedOrder.order().orderId()
-                    + " urgency=" + prioritizedOrder.priorityScore()
+                    + " weightedPriority=" + prioritizedOrder.priorityScore()
+                    + " urgency=" + prioritizedOrder.order().urgency()
                     + " deadline=" + prioritizedOrder.order().deadline());
         }
         System.out.println("Database synced. Processed orders are now DISPATCHED and audit events were recorded.");
@@ -549,7 +579,12 @@ public class ConsoleMenu {
 
     private void selectOrdersDynamicProgramming() throws Exception {
         Order[] orders = chooseOrderSubset(PAGE_LIMIT);
-        int maxDistanceUnits = readInt("Enter max total distance/capacity units", 1, 1000);
+        StudentIdParameters parameters = studentIdParameterService.calculateParameters();
+        System.out.println("Student-ID suggested DP capacity: " + parameters.dynamicProgrammingCapacity());
+        int maxDistanceUnits = parameters.dynamicProgrammingCapacity();
+        if (!readYesNo("Use the Student-ID capacity for this run?")) {
+            maxDistanceUnits = readInt("Enter max total distance/capacity units", 1, 1000);
+        }
         OrderSelectionResult result = optimizationService.selectOrdersWithinDistance(orders, maxDistanceUnits);
         System.out.println("Dynamic programming order selection, max distance units=" + maxDistanceUnits);
         for (Order order : result.selectedOrders()) {
@@ -561,7 +596,9 @@ public class ConsoleMenu {
     }
 
     private void runAlgorithmExperiments() throws Exception {
+        StudentIdParameters parameters = studentIdParameterService.calculateParameters();
         System.out.println("Default performance lab uses input sizes 50, 100 and 200 with 3 trials.");
+        System.out.println("Hash experiments use Student-ID initial table size: " + parameters.hashTableInitialSize());
         if (!readYesNo("Run experiments now?")) {
             System.out.println("Cancelled.");
             return;
@@ -571,6 +608,28 @@ public class ConsoleMenu {
         System.out.println("Experiment run complete.");
         System.out.println("Rows saved to database: " + runs.length);
         System.out.println("CSV exported to results/csv/algorithm_runs.csv");
+        System.out.println("Averages exported to results/csv/algorithm_run_averages.csv");
+        printAlgorithmRuns(runs, Math.min(12, runs.length));
+    }
+
+    private void runReportAlgorithmExperiments() throws Exception {
+        StudentIdParameters parameters = studentIdParameterService.calculateParameters();
+        System.out.println("Final report mode runs official larger input sizes with 3 trials per size.");
+        System.out.println("Search/sorting/tree sizes: 100, 500, 1000, 5000, 10000");
+        System.out.println("Hash/heap sizes: 100, 500, 1000, 5000, 10000, 20000");
+        System.out.println("Graph sizes: 50, 100, 200, 500");
+        System.out.println("Hash experiments use Student-ID initial table size: " + parameters.hashTableInitialSize());
+        System.out.println("Expected raw trial rows: " + experimentService.expectedReportRunCount());
+        if (!readYesNo("Run final report experiments now?")) {
+            System.out.println("Cancelled.");
+            return;
+        }
+        System.out.println("Running final report performance lab. This can take a while...");
+        AlgorithmRun[] runs = experimentService.runReportExperiments();
+        System.out.println("Report experiment run complete.");
+        System.out.println("Rows saved to database: " + runs.length);
+        System.out.println("Raw CSV exported to results/csv/algorithm_runs_report.csv");
+        System.out.println("Averages exported to results/csv/algorithm_run_averages_report.csv");
         printAlgorithmRuns(runs, Math.min(12, runs.length));
     }
 
@@ -584,9 +643,13 @@ public class ConsoleMenu {
     }
 
     private void showGraphCommand() {
-        System.out.println("After running experiments, generate SVG graphs with:");
+        System.out.println("After running quick demo experiments, generate SVG graphs with:");
         System.out.println("python scripts/plot-results/plot_algorithm_runs.py");
         System.out.println("Output folder: results/graphs");
+        System.out.println();
+        System.out.println("After running final report experiments, generate SVG graphs with:");
+        System.out.println("python scripts/plot-results/plot_algorithm_runs.py --input results/csv/algorithm_runs_report.csv --output-dir results/graphs-report");
+        System.out.println("Output folder: results/graphs-report");
     }
 
     private Comparator<Order> chooseOrderComparator() {
@@ -654,6 +717,8 @@ public class ConsoleMenu {
     }
 
     private AdjacencyListGraph buildCurrentGraph() throws Exception {
+        StudentIdParameters parameters = studentIdParameterService.calculateParameters();
+        System.out.println("Using Student-ID route penalty: " + parameters.routePenalty());
         return routeService.buildGraph(requireLocations(), requireRoads());
     }
 
@@ -797,6 +862,17 @@ public class ConsoleMenu {
                 builder.append(" -> ");
             }
             builder.append(locationName(locations, values[i]));
+        }
+        return builder.toString();
+    }
+
+    private String join(int[] values, String separator) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < values.length; i++) {
+            if (i > 0) {
+                builder.append(separator);
+            }
+            builder.append(values[i]);
         }
         return builder.toString();
     }
