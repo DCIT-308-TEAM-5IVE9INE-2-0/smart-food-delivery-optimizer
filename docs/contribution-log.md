@@ -10,7 +10,7 @@ Official project title: SMART FOOD DELIVERY
 
 | # | Student ID | Full Name | Role / Course |
 | --- | --- | --- | --- |
-| 1 | 22020618 | Adom Bempong Franklin | Group Leader (DCIT 308) |
+| 1 | 22020618 | Franklin Bempong Adom | Group Leader (DCIT 308) |
 | 2 | 22012447 | Dzah Solomon Sampson | Technical Lead / Member (DCIT 308) |
 | 3 | 22166686 | Asante Emmanuella Baaba | Member |
 | 4 | 22146249 | Mubarack Jibriel | Member (DCIT 308) |
