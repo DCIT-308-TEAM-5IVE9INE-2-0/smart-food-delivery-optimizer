@@ -1,6 +1,6 @@
 # Algorithm Correctness Notes
 
-Project: SMART FOOD DELIVERY
+Project : Smart Food Delivery
 
 ## Binary Search
 
