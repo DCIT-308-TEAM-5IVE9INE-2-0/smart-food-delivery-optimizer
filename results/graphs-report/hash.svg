@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="480.0" y="28" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700">Hash Performance</text>
+<line x1="80" y1="50" x2="80" y2="460" stroke="#333"/>
+<line x1="80" y1="460" x2="740" y2="460" stroke="#333"/>
+<text x="410.0" y="516" text-anchor="middle" font-family="Arial" font-size="14">Input size</text>
+<text x="22" y="255.0" text-anchor="middle" font-family="Arial" font-size="14" transform="rotate(-90 22 255.0)">Average runtime (ns)</text>
+<line x1="80.00" y1="460" x2="80.00" y2="466" stroke="#333"/>
+<text x="80.00" y="484" text-anchor="middle" font-family="Arial" font-size="12">100</text>
+<line x1="212.00" y1="460" x2="212.00" y2="466" stroke="#333"/>
+<text x="212.00" y="484" text-anchor="middle" font-family="Arial" font-size="12">500</text>
+<line x1="344.00" y1="460" x2="344.00" y2="466" stroke="#333"/>
+<text x="344.00" y="484" text-anchor="middle" font-family="Arial" font-size="12">1000</text>
+<line x1="476.00" y1="460" x2="476.00" y2="466" stroke="#333"/>
+<text x="476.00" y="484" text-anchor="middle" font-family="Arial" font-size="12">5000</text>
+<line x1="608.00" y1="460" x2="608.00" y2="466" stroke="#333"/>
+<text x="608.00" y="484" text-anchor="middle" font-family="Arial" font-size="12">10000</text>
+<line x1="740.00" y1="460" x2="740.00" y2="466" stroke="#333"/>
+<text x="740.00" y="484" text-anchor="middle" font-family="Arial" font-size="12">20000</text>
+<line x1="74" y1="460.00" x2="80" y2="460.00" stroke="#333"/>
+<line x1="80" y1="460.00" x2="740" y2="460.00" stroke="#e5e5e5"/>
+<text x="70" y="464.00" text-anchor="end" font-family="Arial" font-size="11">0</text>
+<line x1="74" y1="357.50" x2="80" y2="357.50" stroke="#333"/>
+<line x1="80" y1="357.50" x2="740" y2="357.50" stroke="#e5e5e5"/>
+<text x="70" y="361.50" text-anchor="end" font-family="Arial" font-size="11">566175</text>
+<line x1="74" y1="255.00" x2="80" y2="255.00" stroke="#333"/>
+<line x1="80" y1="255.00" x2="740" y2="255.00" stroke="#e5e5e5"/>
+<text x="70" y="259.00" text-anchor="end" font-family="Arial" font-size="11">1132350</text>
+<line x1="74" y1="152.50" x2="80" y2="152.50" stroke="#333"/>
+<line x1="80" y1="152.50" x2="740" y2="152.50" stroke="#e5e5e5"/>
+<text x="70" y="156.50" text-anchor="end" font-family="Arial" font-size="11">1698525</text>
+<line x1="74" y1="50.00" x2="80" y2="50.00" stroke="#333"/>
+<line x1="80" y1="50.00" x2="740" y2="50.00" stroke="#e5e5e5"/>
+<text x="70" y="54.00" text-anchor="end" font-family="Arial" font-size="11">2264700</text>
+<polyline points="80.00,194.11 212.00,434.17 344.00,425.57 476.00,316.19 608.00,220.80 740.00,183.81" fill="none" stroke="#1f77b4" stroke-width="2.5"/>
+<circle cx="80.00" cy="194.11" r="4" fill="#1f77b4"/>
+<circle cx="212.00" cy="434.17" r="4" fill="#1f77b4"/>
+<circle cx="344.00" cy="425.57" r="4" fill="#1f77b4"/>
+<circle cx="476.00" cy="316.19" r="4" fill="#1f77b4"/>
+<circle cx="608.00" cy="220.80" r="4" fill="#1f77b4"/>
+<circle cx="740.00" cy="183.81" r="4" fill="#1f77b4"/>
+<rect x="770" y="40" width="14" height="14" fill="#1f77b4"/>
+<text x="792" y="52" font-family="Arial" font-size="13">Hash Table Insert</text>
+<polyline points="80.00,448.58 212.00,422.83 344.00,414.77 476.00,259.73 608.00,153.22 740.00,50.00" fill="none" stroke="#d62728" stroke-width="2.5"/>
+<circle cx="80.00" cy="448.58" r="4" fill="#d62728"/>
+<circle cx="212.00" cy="422.83" r="4" fill="#d62728"/>
+<circle cx="344.00" cy="414.77" r="4" fill="#d62728"/>
+<circle cx="476.00" cy="259.73" r="4" fill="#d62728"/>
+<circle cx="608.00" cy="153.22" r="4" fill="#d62728"/>
+<circle cx="740.00" cy="50.00" r="4" fill="#d62728"/>
+<rect x="770" y="64" width="14" height="14" fill="#d62728"/>
+<text x="792" y="76" font-family="Arial" font-size="13">Hash Table Lookup</text>
+</svg>

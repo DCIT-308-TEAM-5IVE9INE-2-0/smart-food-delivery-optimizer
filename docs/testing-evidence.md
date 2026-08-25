@@ -91,3 +91,18 @@ The project must remain console-first and examiner-demo friendly. The current
 console connects the major features, but the next integration pass must allow
 users to choose real IDs, limits and options during runtime instead of relying
 on default sample values.
+
+## Test Execution Result
+
+The project was tested locally using:
+
+```bash
+mvn test
+
+The test execution completed successfully with:
+
+Tests run: 70
+Failures: 0
+Errors: 0
+Skipped: 0
+Build status: BUILD SUCCESS
